@@ -1,0 +1,107 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class MainController extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+
+	}
+
+	public function index() {
+
+		$this->load->view('admin/adminhome');
+		//tanu
+	}
+	public function supplierpage() {
+
+		$data['countrylist']  = $this->Supplier_model->sendcountry();
+		$data['supplierlist'] = $this->Supplier_model->suppliers();
+		$this->load->view('admin/suppliers', $data);
+	}
+
+	public function savesupplierdetails() {
+
+		$data['firstname']   = $this->input->post('firstname');
+		$data['lastname']    = $this->input->post('lastname');
+		$data['email']       = $this->input->post('email');
+		$data['phone']       = $this->input->post('phone');
+		$data['mobile']      = $this->input->post('mobile');
+		$data['address']     = $this->input->post('address');
+		$data['city']        = $this->input->post('city');
+		$data['country']     = $this->input->post('country');
+		$data['remark']      = $this->input->post('remark');
+		$data['scope']       = $this->input->post('scope');
+		$data['certificate'] = $this->input->post('certificateradio');
+		$data['valid']       = $this->input->post('validradio');
+
+		$dt = date('Ymdhis');
+		if (($_FILES['userphoto']['name'])) {
+			$fn1       = $_FILES['userphoto']['name'];
+			$extlst    = explode(".", $fn1);
+			$filesname = $extlst[0];
+			$ext       = $extlst[1];
+			$newname   = $extlst[0].$dt;
+			// . $this->input->post('unit_no');
+
+			$newname2 = 'supplierphoto'.$newname.".".$ext;
+
+			$sourceapplicant = $_FILES['userphoto']['tmp_name'];
+			$targetapplicant = "uploads/suppliers_img/".$newname2;
+			move_uploaded_file($sourceapplicant, $targetapplicant);
+
+		} else {
+			$newname2 = '';
+		}
+		$dts  = date('Ymdhis');
+		$rand = rand(0, 9999999);
+		$dtp  = $dts.$rand;
+		if (($_FILES['certificatephoto']['name'])) {
+			$fn1       = $_FILES['certificatephoto']['name'];
+			$extlst    = explode(".", $fn1);
+			$filesname = $extlst[0];
+			$ext       = $extlst[1];
+			$newname3  = $extlst[0].$dtp;
+			// . $this->input->post('unit_no');
+
+			$newname4 = 'certificatephoto'.$newname.".".$ext;
+
+			$sourceapplicant = $_FILES['certificatephoto']['tmp_name'];
+			$targetapplicant = "uploads/suppliers_img/".$newname4;
+			move_uploaded_file($sourceapplicant, $targetapplicant);
+
+		} else {
+			$newname4 = '';
+		}
+
+		$data['userimgpath']          = $newname2;
+		$data['certificatephotopath'] = $newname4;
+		if ($this->input->post('request_id') == '') {
+			$a = $this->Supplier_model->insertsupplierdetails($data);
+		} else {
+			$reqid = $this->input->post('request_id');
+			$a     = $this->Supplier_model->updatesupplierdetails($data, $reqid);
+		}
+		redirect('MainController/supplierpage');
+
+	}
+
+	public function editsupplier($id) {
+		$supplier_id          = $id;
+		$data['rowdata']      = $this->Supplier_model->getsupplierdetail($supplier_id);
+		$data['countrylist']  = $this->Supplier_model->sendcountry();
+		$data['supplierlist'] = $this->Supplier_model->suppliers();
+		$this->load->view('admin/suppliers', $data);
+
+	}
+	public function deletesupplier($id) {
+		$supplier_id          = $id;
+		$a                    = $this->Supplier_model->deletesupplierdetail($supplier_id);
+		$data['countrylist']  = $this->Supplier_model->sendcountry();
+		$data['supplierlist'] = $this->Supplier_model->suppliers();
+		$this->load->view('admin/suppliers', $data);
+	}
+
+}
+
+?>

@@ -1,0 +1,23 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Product_model extends CI_Model {
+
+	public function insertproductdetails($data) {
+		$this->db->insert('product_tbl', $data);
+		return true;
+
+	}
+
+	public function getproductlist() {
+		$a = $this->db->get('product_tbl');
+		return $a->result();
+	}
+	public function getdatabyid($id) {
+		$pr_dtl = $this->db->where('id', $id)->select('*')->get('product_tbl');
+		return $supp_dtl->row_array();
+	}
+
+}
+?>

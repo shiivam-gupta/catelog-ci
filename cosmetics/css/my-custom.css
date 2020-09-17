@@ -1,0 +1,87 @@
+.login-page, .register-page {
+    background: #648cdc;
+}
+
+.pull-right {
+    float:right!important
+}
+
+.pull-left{
+    float:left!important
+}
+
+span.help-block p {
+    color: red;
+}
+
+div.help-block {
+    color: red;
+}
+
+.photos-btn {
+    /*background-color: #B21589;*/
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px;
+    margin-top: 170px;
+    margin-left: 50px;
+    vertical-align: top;
+}
+
+img.img-circle.prod-user-image {
+    width: 200px;
+}
+
+.ordershow{
+	
+	text-align: center;
+}
+
+.ordershow li{
+	display: inline-block;
+	vertical-align: top;
+	margin: 4%;
+	text-align: center;
+    width: 120px;
+    padding: 5px;
+}
+.customalign{
+    text-align: center;
+}
+
+
+.image-container img {
+    max-width: 130px; 
+    max-height: 130px;
+    overflow: hidden; 
+}
+
+.cartCount{
+    position: absolute;
+    text-align: center;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    background-color: #ff6161;
+    border: 1px solid #fff;
+    font-weight: 400;
+    color: #f0f0f0;
+    line-height: 16px;
+    font-size: 12px;
+}
+
+h1.text-center.site-name {
+    display:inline;
+    color:#ff0000f2
+}
+
+.singleProductLabel{
+    margin: 0;
+    letter-spacing: 1px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #999;
+    font-family: 'Open Sans', sans-serif;
+}

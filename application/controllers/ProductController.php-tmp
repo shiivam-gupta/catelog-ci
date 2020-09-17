@@ -1,0 +1,65 @@
+<?php
+
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class ProductController extends CI_Controller {
+	function __construct() {
+		parent::__construct();
+
+	}
+	public function productpage() {
+		$data['productlist'] = $this->Product_model->getproductlist();
+		$this->load->view('admin/products', $data);
+	}
+
+	public function saveproducts() {
+
+		$data['name']         = $this->input->post('name');
+		$data['category']     = $this->input->post('category');
+		$data['ktav']         = $this->input->post('ktav');
+		$data['product_type'] = $this->input->post('product_type');
+		$data['ktav_size']    = $this->input->post('ktav_size');
+		$data['plines']       = $this->input->post('plines');
+		$data['line_size']    = $this->input->post('line_size');
+
+		$data['priceindollar'] = $this->input->post('priceindoller');
+		$data['priceinshekel'] = $this->input->post('priceinshekel');
+		$data['klaf_included'] = $this->input->post('klaf_included');
+		$data['tag_included']  = $this->input->post('tag_included');
+
+		$dt = date('Ymdhis');
+		if (($_FILES['productphoto']['name'])) {
+			$fn1       = $_FILES['productphoto']['name'];
+			$extlst    = explode(".", $fn1);
+			$filesname = $extlst[0];
+			$ext       = $extlst[1];
+			$newname   = $extlst[0].$dt;
+			// . $this->input->post('unit_no');
+
+			$newname2 = 'productphoto'.$newname.".".$ext;
+
+			$sourceapplicant = $_FILES['productphoto']['tmp_name'];
+			$targetapplicant = "uploads/products_img/".$newname2;
+			move_uploaded_file($sourceapplicant, $targetapplicant);
+
+		} else {
+			$newname2 = '';
+		}
+
+		$data['product_photo'] = $newname2;
+		if ($this->input->post('request_id') == '') {
+			$a = $this->Product_model->insertproductdetails($data);
+		} else {
+			$reqid = $this->input->post('request_id');
+			$a     = $this->Product_model->updateproductdetails($data, $reqid);
+		}
+		redirect('ProductController/productpage');
+	}
+
+	public function editproduct($id) {
+		$data['rowdata']     = $this->Product_model->getdatabyid($id);
+		$data['productlist'] = $this->Product_model->getproductlist();
+		$this->load->view('admin/products', $data);
+
+	}
+}

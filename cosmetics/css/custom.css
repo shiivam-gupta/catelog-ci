@@ -1,0 +1,81 @@
+.login-page, .register-page {
+    background: #648cdc;
+}
+
+.pull-right {
+    float:right!important
+}
+
+.pull-left{
+    float:left!important
+}
+
+span.help-block p {
+    color: red;
+}
+
+div.help-block {
+    color: red;
+}
+
+.swal2-popup {
+    display: none;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    width: 32em;
+    max-width: 100%;
+    padding: 1.25em;
+    border-radius: 0.3125em;
+    background: #fff;
+    font-family: inherit;
+     font-size: 1.3rem; 
+    box-sizing: border-box;
+}
+
+.swal2-popup .swal2-content {
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-size: 1.525em;
+    font-weight: 300;
+    line-height: normal;
+    z-index: 1;
+    word-wrap: break-word;
+}
+
+.photos-btn {
+    /*background-color: #B21589;*/
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 4px;
+    margin-top: 170px;
+    margin-left: 50px;
+    vertical-align: top;
+}
+
+img.img-circle.prod-user-image {
+    width: 200px;
+}
+
+.image-container img {
+    max-width: 100px; 
+    max-height: 100px;
+    overflow: hidden; 
+}
+.search-group{
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+@media only screen and (max-width: 600px) {
+  .example {
+    /*background: red;*/
+    display: inline-block;
+    padding: 20px;
+    margin: 10px;
+  }
+}

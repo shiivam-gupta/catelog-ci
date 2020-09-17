@@ -1,0 +1,20 @@
+body {
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}
+/* Flip each letter backwards */
+/*div {
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}*/
+/* Entire text flipped around */
+/*div {
+    -webkit-transform:rotateY(180deg);
+    -moz-transform:rotateY(180deg);
+    -o-transform:rotateY(180deg);
+    -ms-transform:rotateY(180deg);
+}*/
